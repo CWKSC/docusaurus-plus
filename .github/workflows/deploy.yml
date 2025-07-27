@@ -9,9 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./docusaurus-plus
 
     permissions:
       contents: read
@@ -34,7 +31,7 @@ jobs:
           cache-dependency-path: docusaurus-plus/pnpm-lock.yaml
 
       - name: Cache .docusaurus directory
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ./docusaurus-plus/.docusaurus
           key: docusaurus-${{ runner.os }}-${{ hashFiles('docusaurus-plus/docusaurus.config.js', 'docusaurus-plus/sidebars.js') }}
@@ -42,9 +39,11 @@ jobs:
             docusaurus-${{ runner.os }}-${{ hashFiles('docusaurus-plus/docusaurus.config.js', 'docusaurus-plus/sidebars.js') }}
 
       - name: Install dependencies
+        working-directory: ./docusaurus-plus
         run: pnpm install
 
       - name: Build
+        working-directory: ./docusaurus-plus
         run: pnpm build
 
       - name: Upload pages artifact
