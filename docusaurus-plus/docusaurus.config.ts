@@ -178,6 +178,8 @@ const config: Config = {
             /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
             ({
                 hashed: true,
+                docsDir: [],
+                blogDir: [],
                 docsRouteBasePath: multidocsNames,
                 blogRouteBasePath: multiblogNames,
                 language: ["en", "zh"],
