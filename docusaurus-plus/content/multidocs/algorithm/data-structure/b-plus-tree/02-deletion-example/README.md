@@ -13,11 +13,11 @@ Delete `9, 7, 8` in following B+ Tree
 1,2/3,4/5,6/7,8/9,10/11,12
 ```
 
-<p class="h-350">
+<div class="h-350">
 
 ![](./image/step-1-init.png)
 
-</p>
+</div>
 
 Delete `9`
 
@@ -31,11 +31,11 @@ In `[3, 5, 7]` and `[10]`, left side can borrow
 
 `7` go to parent, right side use `10` as index
 
-<p class="h-350">
+<div class="h-350">
 
 ![](./image/step-2-delete-9.png)
 
-</p>
+</div>
 
 Delete `7`
 
@@ -49,11 +49,11 @@ Use successor `11` as index
 
 Check parent, replace `7` with successor `8`
 
-<p class="h-350">
+<div class="h-350">
 
 ![](./image/step-3-delete-7.png)
 
-</p>
+</div>
 
 Delete `8`
 
@@ -65,11 +65,11 @@ In `[3, 5]` and `[10]`, left side cannot borrowing, need merge
 
 Merge, `[3, 5, 10]`, delete index `8`
 
-<p class="h-250">
+<div class="h-250">
 
 ![](./image/step-4-delete-8.png)
 
-</p>
+</div>
 
 
 
