@@ -9,9 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./docusaurus-plus
+    # defaults:
+    #   run:
+    #     working-directory: ./docusaurus-plus
 
     steps:
       - uses: actions/checkout@v4
