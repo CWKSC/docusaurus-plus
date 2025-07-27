@@ -9,6 +9,10 @@ on:
 env:
   DOCUSAURUS_IGNORE_SSG_WARNINGS: true
 
+concurrency:
+  group: "pages-${{ github.ref }}"
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -33,21 +37,15 @@ jobs:
           cache: "pnpm"
           cache-dependency-path: docusaurus-plus/pnpm-lock.yaml
 
-      - name: Cache .docusaurus directory
+      - name: Cache .docusaurus and node_modules/.cache
         uses: actions/cache@v4
         with:
-          path: ./docusaurus-plus/.docusaurus
+          path: |
+            ./docusaurus-plus/.docusaurus
+            ./docusaurus-plus/node_modules/.cache
           key: docusaurus-${{ runner.os }}-${{ hashFiles('docusaurus-plus/docusaurus.config.ts', 'docusaurus-plus/sidebars.ts') }}
           restore-keys: |
-            docusaurus-${{ runner.os }}-${{ hashFiles('docusaurus-plus/docusaurus.config.ts', 'docusaurus-plus/sidebars.ts') }}
-
-      - name: Cache node_modules/.cache
-        uses: actions/cache@v4
-        with:
-          path: ./docusaurus-plus/node_modules/.cache
-          key: docusaurus-${{ runner.os }}-${{ hashFiles('docusaurus-plus/docusaurus.config.ts', 'docusaurus-plus/sidebars.ts') }}
-          restore-keys: |
-            docusaurus-${{ runner.os }}-${{ hashFiles('docusaurus-plus/docusaurus.config.ts', 'docusaurus-plus/sidebars.ts') }}
+            docusaurus-${{ runner.os }}-
 
       - name: Install dependencies
         working-directory: ./docusaurus-plus
