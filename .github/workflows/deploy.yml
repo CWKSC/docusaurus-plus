@@ -41,6 +41,14 @@ jobs:
           restore-keys: |
             docusaurus-${{ runner.os }}-${{ hashFiles('docusaurus-plus/docusaurus.config.ts', 'docusaurus-plus/sidebars.ts') }}
 
+      - name: Cache node_modules/.cache
+        uses: actions/cache@v4
+        with:
+          path: ./docusaurus-plus/node_modules/.cache
+          key: docusaurus-${{ runner.os }}-${{ hashFiles('docusaurus-plus/docusaurus.config.ts', 'docusaurus-plus/sidebars.ts') }}
+          restore-keys: |
+            docusaurus-${{ runner.os }}-${{ hashFiles('docusaurus-plus/docusaurus.config.ts', 'docusaurus-plus/sidebars.ts') }}
+
       - name: Install dependencies
         working-directory: ./docusaurus-plus
         run: pnpm install
