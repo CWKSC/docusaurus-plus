@@ -33,6 +33,14 @@ jobs:
           cache: "pnpm"
           cache-dependency-path: pnpm-lock.yaml
 
+      - name: Cache .docusaurus directory
+        uses: actions/cache@v3
+        with:
+          path: ./docusaurus-plus/.docusaurus
+          key: docusaurus-${{ runner.os }}-${{ hashFiles('docusaurus-plus/docusaurus.config.js', 'docusaurus-plus/sidebars.js') }}
+          restore-keys: |
+            docusaurus-${{ runner.os }}-${{ hashFiles('docusaurus-plus/docusaurus.config.js', 'docusaurus-plus/sidebars.js') }}
+
       - name: Install dependencies
         run: pnpm install
 
