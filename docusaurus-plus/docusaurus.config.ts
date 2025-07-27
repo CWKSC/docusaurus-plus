@@ -174,18 +174,18 @@ const config: Config = {
         },
     ],
 
-    // themes: [
-    //     [
-    //         require.resolve("@easyops-cn/docusaurus-search-local"),
-    //         /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
-    //         ({
-    //             hashed: true,
-    //             docsRouteBasePath: multidocsNames,
-    //             blogRouteBasePath: multiblogNames,
-    //             language: ["en", "zh"],
-    //         }),
-    //     ],
-    // ],
+    themes: [
+        [
+            require.resolve("@easyops-cn/docusaurus-search-local"),
+            /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+            ({
+                hashed: true,
+                docsRouteBasePath: multidocsNames,
+                blogRouteBasePath: multiblogNames,
+                language: ["en", "zh"],
+            }),
+        ],
+    ],
 
     plugins: [
         ...multiblogPlugin,
