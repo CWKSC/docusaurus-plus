@@ -9,9 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # defaults:
-    #   run:
-    #     working-directory: ./docusaurus-plus
+    defaults:
+      run:
+        working-directory: ./docusaurus-plus
 
     permissions:
       contents: read
@@ -31,20 +31,18 @@ jobs:
         with:
           node-version: 24
           cache: "pnpm"
-          cache-dependency-path: docusaurus-plus/pnpm-lock.yaml
+          cache-dependency-path: pnpm-lock.yaml
 
       - name: Install dependencies
         run: pnpm install
-        working-directory: ./docusaurus-plus
 
       - name: Build
         run: pnpm build
-        working-directory: ./docusaurus-plus
 
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docusaurus-plus/build
+          path: build
 
   # https://github.com/actions/deploy-pages
   deploy:
