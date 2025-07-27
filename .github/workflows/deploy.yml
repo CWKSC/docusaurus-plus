@@ -13,6 +13,9 @@ jobs:
     #   run:
     #     working-directory: ./docusaurus-plus
 
+    permissions:
+      contents: read
+
     steps:
       - uses: actions/checkout@v4
 
@@ -27,13 +30,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: "pnpm"
+          # cache: "pnpm"
 
       - name: Install dependencies
         run: pnpm install
+        working-directory: ./docusaurus-plus
 
       - name: Build
         run: pnpm build
+        working-directory: ./docusaurus-plus
 
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3
