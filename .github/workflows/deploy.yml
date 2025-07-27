@@ -34,9 +34,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ./docusaurus-plus/.docusaurus
-          key: docusaurus-${{ runner.os }}-${{ hashFiles('docusaurus-plus/docusaurus.config.js', 'docusaurus-plus/sidebars.js') }}
+          key: docusaurus-${{ runner.os }}-${{ hashFiles('docusaurus-plus/docusaurus.config.ts', 'docusaurus-plus/sidebars.ts') }}
           restore-keys: |
-            docusaurus-${{ runner.os }}-${{ hashFiles('docusaurus-plus/docusaurus.config.js', 'docusaurus-plus/sidebars.js') }}
+            docusaurus-${{ runner.os }}-${{ hashFiles('docusaurus-plus/docusaurus.config.ts', 'docusaurus-plus/sidebars.ts') }}
 
       - name: Install dependencies
         working-directory: ./docusaurus-plus
