@@ -1,5 +1,4 @@
 import fs from 'fs';
-
 import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
@@ -8,14 +7,13 @@ import type * as Preset from '@docusaurus/preset-classic';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 
-// import { github_username, repo_name } from './config/common';
-
+// Constants
 const githubUsername = "CWKSC"
 const repoName = "docusaurus-plus"
 
 // Support github.io and sub repo deployment
 let baseUrl = `/${repoName}/`
-if (repoName == `${githubUsername}.github.io`.toLowerCase()) {
+if (repoName === `${githubUsername}.github.io`.toLowerCase()) {
     baseUrl = "/"
 }
 
@@ -30,11 +28,11 @@ const multiblogPlugin = multiblogNames.map((dirname, index) => {
     return [
         '@docusaurus/plugin-content-blog',
         {
-            id: index == 0 ? 'default' : dirname,
+            id: index === 0 ? 'default' : dirname,
             path: `./content/multiblog/${dirname}`,
             routeBasePath: `${dirname}`,
             remarkPlugins: [remarkMath],
-            rehypePlugins: [rehypeKatex],
+            rehypePlugins: [[rehypeKatex, { strict: false }]],
         },
     ]
 });
@@ -50,7 +48,7 @@ const multidocsPlugin = multidocsNames.map((dirname, index) => {
     return [
         '@docusaurus/plugin-content-docs',
         {
-            id: index == 0 ? 'default' : dirname,
+            id: index === 0 ? 'default' : dirname,
             path: `./content/multidocs/${dirname}`,
             routeBasePath: `${dirname}`,
             sidebarPath: './sidebars.ts',
